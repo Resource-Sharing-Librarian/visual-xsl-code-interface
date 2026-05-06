@@ -1,0 +1,8 @@
+{
+  "id": "resource-sharing-receive-slip",
+  "name": "Resource Sharing Receive Slip Letter",
+  "description": "Proof of concept letter definition for the alternate visual builder.",
+  "sampleXml": "./sample.xml",
+  "beginXsl": "./begin.xsl",
+  "endXsl": "./end.xsl"
+}

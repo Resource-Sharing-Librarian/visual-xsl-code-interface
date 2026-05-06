@@ -1,0 +1,12 @@
+{
+  "id": "ful-incoming-slip-letter",
+  "name": "Ful Incoming Slip Letter",
+  "description": "Prototype letter definition using the copied Ful Incoming Slip XML samples.",
+  "sampleXml": "./sample-book.xml",
+  "alternateSamples": [
+    "./sample-book-chapter.xml",
+    "./sample-article.xml"
+  ],
+  "beginXsl": "./begin.xsl",
+  "endXsl": "./end.xsl"
+}

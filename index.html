@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Alma Letter Builder</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <p class="eyebrow">Alternate Sandbox Prototype</p>
+      <h1>Visual Alma Letter Builder</h1>
+    </header>
+
+    <section class="control-bar">
+      <label class="letter-picker" for="letter-select">
+        <span>Letter</span>
+        <select id="letter-select"></select>
+      </label>
+      <div class="letter-meta">
+        <span id="letter-description"></span>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <aside class="rail panel">
+        <div class="panel-heading">
+          <h2>Insert</h2>
+          <p>Click any item to insert it at the current cursor position.</p>
+        </div>
+
+        <details class="token-group">
+          <summary>Metadata</summary>
+          <div id="metadata-list" class="token-list"></div>
+        </details>
+
+        <details class="token-group">
+          <summary>Barcodes</summary>
+          <div id="barcode-list" class="token-list"></div>
+        </details>
+
+        <details class="token-group">
+          <summary>Alma Labels</summary>
+          <div id="label-list" class="token-list"></div>
+        </details>
+      </aside>
+
+      <section class="editor-column">
+        <div class="panel editor-panel">
+          <div class="panel-heading">
+            <h2>Editor</h2>
+            <p>Write and format the letter content here using the visual editor.</p>
+          </div>
+
+          <div class="toolbar" role="toolbar" aria-label="Formatting toolbar">
+            <button type="button" class="tool-button icon-button" data-command="bold" title="Bold" aria-label="Bold"><strong>B</strong></button>
+            <button type="button" class="tool-button icon-button" data-command="italic" title="Italic" aria-label="Italic"><em>I</em></button>
+            <button type="button" class="tool-button icon-button" data-command="underline" title="Underline" aria-label="Underline"><span class="underlined">U</span></button>
+            <button type="button" class="tool-button icon-button" data-command="insertUnorderedList" title="Bulleted list" aria-label="Bulleted list"><span class="toolbar-icon toolbar-icon-bullets" aria-hidden="true"></span></button>
+            <button type="button" class="tool-button icon-button" data-command="insertOrderedList" title="Numbered list" aria-label="Numbered list"><span class="toolbar-icon toolbar-icon-numbered" aria-hidden="true"></span></button>
+            <button type="button" class="tool-button icon-button" data-command="justifyLeft" title="Align left" aria-label="Align left"><span class="toolbar-icon toolbar-icon-left" aria-hidden="true"></span></button>
+            <button type="button" class="tool-button icon-button" data-command="justifyCenter" title="Align center" aria-label="Align center"><span class="toolbar-icon toolbar-icon-center" aria-hidden="true"></span></button>
+            <button type="button" class="tool-button icon-button" data-command="justifyRight" title="Align right" aria-label="Align right"><span class="toolbar-icon toolbar-icon-right" aria-hidden="true"></span></button>
+            <button type="button" class="tool-button icon-button" id="insert-table-button" title="Insert table" aria-label="Insert table"><span class="toolbar-icon toolbar-icon-table" aria-hidden="true"></span></button>
+            <button type="button" class="tool-button icon-button" id="toggle-table-borders-button" title="Toggle table borders" aria-label="Toggle table borders"><span class="toolbar-icon toolbar-icon-borders" aria-hidden="true"></span></button>
+            <label class="tool-select">
+              <span>Size</span>
+              <select id="font-size-select">
+                <option value="">Default</option>
+                <option value="12px">12</option>
+                <option value="14px">14</option>
+                <option value="16px">16</option>
+                <option value="18px">18</option>
+                <option value="24px">24</option>
+                <option value="32px">32</option>
+              </select>
+            </label>
+            <div class="tool-color">
+              <span>Text</span>
+              <details class="color-picker" id="text-color-picker">
+                <summary class="color-picker-summary" aria-label="Text color picker">
+                  <span class="color-preview" data-color-preview="#17324d"></span>
+                </summary>
+                <div class="swatch-row" id="text-color-swatches" role="group" aria-label="Text color swatches">
+                  <button type="button" class="swatch-button is-active" data-color-command="foreColor" data-color-value="#17324d" data-picker-id="text-color-picker" aria-label="Dark blue text" title="Dark blue text"></button>
+                  <button type="button" class="swatch-button" data-color-command="foreColor" data-color-value="#111111" data-picker-id="text-color-picker" aria-label="Black text" title="Black text"></button>
+                  <button type="button" class="swatch-button" data-color-command="foreColor" data-color-value="#8a1c1c" data-picker-id="text-color-picker" aria-label="Dark red text" title="Dark red text"></button>
+                  <button type="button" class="swatch-button" data-color-command="foreColor" data-color-value="#1f6a38" data-picker-id="text-color-picker" aria-label="Dark green text" title="Dark green text"></button>
+                  <button type="button" class="swatch-button" data-color-command="foreColor" data-color-value="#6f39a8" data-picker-id="text-color-picker" aria-label="Purple text" title="Purple text"></button>
+                </div>
+              </details>
+            </div>
+            <div class="tool-color">
+              <span>Highlight</span>
+              <details class="color-picker" id="highlight-color-picker">
+                <summary class="color-picker-summary" aria-label="Highlight color picker">
+                  <span class="color-preview" data-color-preview="#fff1a8"></span>
+                </summary>
+                <div class="swatch-row" id="highlight-color-swatches" role="group" aria-label="Highlight color swatches">
+                  <button type="button" class="swatch-button is-active" data-color-command="hiliteColor" data-color-value="#fff1a8" data-picker-id="highlight-color-picker" aria-label="Yellow highlight" title="Yellow highlight"></button>
+                  <button type="button" class="swatch-button" data-color-command="hiliteColor" data-color-value="#ffd9d9" data-picker-id="highlight-color-picker" aria-label="Pink highlight" title="Pink highlight"></button>
+                  <button type="button" class="swatch-button" data-color-command="hiliteColor" data-color-value="#dff5e5" data-picker-id="highlight-color-picker" aria-label="Green highlight" title="Green highlight"></button>
+                  <button type="button" class="swatch-button" data-color-command="hiliteColor" data-color-value="#dfeaff" data-picker-id="highlight-color-picker" aria-label="Blue highlight" title="Blue highlight"></button>
+                  <button type="button" class="swatch-button" data-color-command="hiliteColor" data-color-value="#f1e8ff" data-picker-id="highlight-color-picker" aria-label="Purple highlight" title="Purple highlight"></button>
+                </div>
+              </details>
+            </div>
+            <button type="button" class="tool-button secondary" id="clear-formatting-button">Clear</button>
+          </div>
+
+          <div class="editor-section-panel" id="editor-section-panel">
+            <div class="editor-section-heading">
+              <h3>Section Editor</h3>
+              <p>Switch between the Ful Incoming Slip sections for Book, Book Chapter, and Article. The generated XSL will choose the right section based on the item format and material type.</p>
+            </div>
+            <div id="section-switcher" class="section-switcher" role="group" aria-label="Letter section editor"></div>
+          </div>
+
+          <div id="editor-surface" class="editor-surface" contenteditable="true" spellcheck="true" aria-label="Letter content editor"></div>
+        </div>
+      </section>
+
+      <aside class="output-column">
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Generated XSL</h2>
+            <p>Live assembled output using the selected letter wrapper files.</p>
+            <div class="panel-actions">
+              <button type="button" class="action-button" id="copy-xsl-button" aria-label="Copy generated XSL">
+                <span class="copy-icon" aria-hidden="true"></span>
+                <span>Copy</span>
+              </button>
+              <button type="button" class="action-button" id="download-xsl-button" aria-label="Download generated XSL">
+                <span class="download-icon" aria-hidden="true"></span>
+                <span>Download</span>
+              </button>
+            </div>
+          </div>
+          <pre id="xsl-output" class="code-block"></pre>
+        </section>
+      </aside>
+    </section>
+
+    <section class="panel preview-panel">
+      <div class="panel-heading">
+        <h2>Preview</h2>
+        <p>Rendered from the current editor content and the selected sample XML on a portrait 8.5 x 11 page preview.</p>
+        <div id="sample-switcher" class="sample-switcher" role="group" aria-label="Preview XML sample"></div>
+      </div>
+      <div id="preview-surface" class="preview-surface"></div>
+    </section>
+  </main>
+
+  <template id="token-template">
+    <button type="button" class="token-button"></button>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>
