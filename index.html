@@ -31,6 +31,11 @@
         </div>
 
         <details class="token-group">
+          <summary>Images</summary>
+          <div id="image-list" class="token-list"></div>
+        </details>
+
+        <details class="token-group">
           <summary>Metadata</summary>
           <div id="metadata-list" class="token-list"></div>
         </details>
@@ -58,14 +63,14 @@
             <button type="button" class="tool-button icon-button" data-command="italic" title="Italic" aria-label="Italic"><em>I</em></button>
             <button type="button" class="tool-button icon-button" data-command="underline" title="Underline" aria-label="Underline"><span class="underlined">U</span></button>
             <button type="button" class="tool-button icon-button" data-command="insertUnorderedList" title="Bulleted list" aria-label="Bulleted list"><span class="toolbar-icon toolbar-icon-bullets" aria-hidden="true"></span></button>
-            <button type="button" class="tool-button icon-button" data-command="insertOrderedList" title="Numbered list" aria-label="Numbered list"><span class="toolbar-icon toolbar-icon-numbered" aria-hidden="true"></span></button>
+            <button type="button" class="tool-button icon-button" data-command="insertOrderedList" title="Numbered list" aria-label="Numbered list"><span class="toolbar-icon toolbar-icon-numbered" aria-hidden="true"><span class="numbered-glyph">1</span><span class="numbered-glyph">2</span><span class="numbered-glyph">3</span></span></button>
             <button type="button" class="tool-button icon-button" data-command="justifyLeft" title="Align left" aria-label="Align left"><span class="toolbar-icon toolbar-icon-left" aria-hidden="true"></span></button>
             <button type="button" class="tool-button icon-button" data-command="justifyCenter" title="Align center" aria-label="Align center"><span class="toolbar-icon toolbar-icon-center" aria-hidden="true"></span></button>
             <button type="button" class="tool-button icon-button" data-command="justifyRight" title="Align right" aria-label="Align right"><span class="toolbar-icon toolbar-icon-right" aria-hidden="true"></span></button>
             <button type="button" class="tool-button icon-button" id="insert-table-button" title="Insert table" aria-label="Insert table"><span class="toolbar-icon toolbar-icon-table" aria-hidden="true"></span></button>
             <button type="button" class="tool-button icon-button" id="toggle-table-borders-button" title="Toggle table borders" aria-label="Toggle table borders"><span class="toolbar-icon toolbar-icon-borders" aria-hidden="true"></span></button>
             <label class="tool-select">
-              <span>Size</span>
+              <span>Font Size</span>
               <select id="font-size-select">
                 <option value="">Default</option>
                 <option value="12px">12</option>
@@ -80,14 +85,43 @@
               <span>Text</span>
               <details class="color-picker" id="text-color-picker">
                 <summary class="color-picker-summary" aria-label="Text color picker">
-                  <span class="color-preview" data-color-preview="#17324d"></span>
+                  <span class="color-preview" data-color-preview="#17324d" style="background-color:#17324d;"></span>
                 </summary>
-                <div class="swatch-row" id="text-color-swatches" role="group" aria-label="Text color swatches">
-                  <button type="button" class="swatch-button is-active" data-color-command="foreColor" data-color-value="#17324d" data-picker-id="text-color-picker" aria-label="Dark blue text" title="Dark blue text"></button>
-                  <button type="button" class="swatch-button" data-color-command="foreColor" data-color-value="#111111" data-picker-id="text-color-picker" aria-label="Black text" title="Black text"></button>
-                  <button type="button" class="swatch-button" data-color-command="foreColor" data-color-value="#8a1c1c" data-picker-id="text-color-picker" aria-label="Dark red text" title="Dark red text"></button>
-                  <button type="button" class="swatch-button" data-color-command="foreColor" data-color-value="#1f6a38" data-picker-id="text-color-picker" aria-label="Dark green text" title="Dark green text"></button>
-                  <button type="button" class="swatch-button" data-color-command="foreColor" data-color-value="#6f39a8" data-picker-id="text-color-picker" aria-label="Purple text" title="Purple text"></button>
+                <div class="color-menu" id="text-color-swatches" role="group" aria-label="Text color swatches">
+                  <button type="button" class="color-option-button is-automatic" data-color-command="foreColor" data-color-value="#17324d" data-picker-id="text-color-picker" aria-label="Automatic text color" title="Automatic text color">
+                    <span class="swatch-button swatch-button-square is-active" style="--swatch-color:#17324d;"></span>
+                    <span>Automatic</span>
+                  </button>
+                  <div class="color-section">
+                    <div class="color-section-title">Theme Colors</div>
+                    <div class="swatch-grid swatch-grid-theme">
+                      <button type="button" class="swatch-button swatch-button-square is-active" data-color-command="foreColor" data-color-value="#17324d" data-picker-id="text-color-picker" aria-label="Deep blue text" title="Deep blue text" style="--swatch-color:#17324d;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#111111" data-picker-id="text-color-picker" aria-label="Black text" title="Black text" style="--swatch-color:#111111;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#7a7a7a" data-picker-id="text-color-picker" aria-label="Gray text" title="Gray text" style="--swatch-color:#7a7a7a;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#1d4f8c" data-picker-id="text-color-picker" aria-label="Blue text" title="Blue text" style="--swatch-color:#1d4f8c;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#2e75b6" data-picker-id="text-color-picker" aria-label="Sky blue text" title="Sky blue text" style="--swatch-color:#2e75b6;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#ed7d31" data-picker-id="text-color-picker" aria-label="Orange text" title="Orange text" style="--swatch-color:#ed7d31;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#2e7d32" data-picker-id="text-color-picker" aria-label="Green text" title="Green text" style="--swatch-color:#2e7d32;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#26a0da" data-picker-id="text-color-picker" aria-label="Teal text" title="Teal text" style="--swatch-color:#26a0da;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#a53ea7" data-picker-id="text-color-picker" aria-label="Magenta text" title="Magenta text" style="--swatch-color:#a53ea7;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#6dbb3c" data-picker-id="text-color-picker" aria-label="Lime text" title="Lime text" style="--swatch-color:#6dbb3c;"></button>
+                    </div>
+                  </div>
+                  <div class="color-section">
+                    <div class="color-section-title">Standard Colors</div>
+                    <div class="swatch-grid swatch-grid-standard">
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#c00000" data-picker-id="text-color-picker" aria-label="Red text" title="Red text" style="--swatch-color:#c00000;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#ff0000" data-picker-id="text-color-picker" aria-label="Bright red text" title="Bright red text" style="--swatch-color:#ff0000;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#ffc000" data-picker-id="text-color-picker" aria-label="Gold text" title="Gold text" style="--swatch-color:#ffc000;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#ffff00" data-picker-id="text-color-picker" aria-label="Yellow text" title="Yellow text" style="--swatch-color:#ffff00;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#92d050" data-picker-id="text-color-picker" aria-label="Light green text" title="Light green text" style="--swatch-color:#92d050;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#00b050" data-picker-id="text-color-picker" aria-label="Bright green text" title="Bright green text" style="--swatch-color:#00b050;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#00b0f0" data-picker-id="text-color-picker" aria-label="Cyan text" title="Cyan text" style="--swatch-color:#00b0f0;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#0070c0" data-picker-id="text-color-picker" aria-label="Royal blue text" title="Royal blue text" style="--swatch-color:#0070c0;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#002060" data-picker-id="text-color-picker" aria-label="Navy text" title="Navy text" style="--swatch-color:#002060;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="foreColor" data-color-value="#7030a0" data-picker-id="text-color-picker" aria-label="Purple text" title="Purple text" style="--swatch-color:#7030a0;"></button>
+                    </div>
+                  </div>
                 </div>
               </details>
             </div>
@@ -95,14 +129,43 @@
               <span>Highlight</span>
               <details class="color-picker" id="highlight-color-picker">
                 <summary class="color-picker-summary" aria-label="Highlight color picker">
-                  <span class="color-preview" data-color-preview="#fff1a8"></span>
+                  <span class="color-preview" data-color-preview="#fff1a8" style="background-color:#fff1a8;"></span>
                 </summary>
-                <div class="swatch-row" id="highlight-color-swatches" role="group" aria-label="Highlight color swatches">
-                  <button type="button" class="swatch-button is-active" data-color-command="hiliteColor" data-color-value="#fff1a8" data-picker-id="highlight-color-picker" aria-label="Yellow highlight" title="Yellow highlight"></button>
-                  <button type="button" class="swatch-button" data-color-command="hiliteColor" data-color-value="#ffd9d9" data-picker-id="highlight-color-picker" aria-label="Pink highlight" title="Pink highlight"></button>
-                  <button type="button" class="swatch-button" data-color-command="hiliteColor" data-color-value="#dff5e5" data-picker-id="highlight-color-picker" aria-label="Green highlight" title="Green highlight"></button>
-                  <button type="button" class="swatch-button" data-color-command="hiliteColor" data-color-value="#dfeaff" data-picker-id="highlight-color-picker" aria-label="Blue highlight" title="Blue highlight"></button>
-                  <button type="button" class="swatch-button" data-color-command="hiliteColor" data-color-value="#f1e8ff" data-picker-id="highlight-color-picker" aria-label="Purple highlight" title="Purple highlight"></button>
+                <div class="color-menu" id="highlight-color-swatches" role="group" aria-label="Highlight color swatches">
+                  <button type="button" class="color-option-button is-automatic" data-color-command="hiliteColor" data-color-value="#fff1a8" data-picker-id="highlight-color-picker" aria-label="Automatic highlight color" title="Automatic highlight color">
+                    <span class="swatch-button swatch-button-square is-active" style="--swatch-color:#fff1a8;"></span>
+                    <span>Automatic</span>
+                  </button>
+                  <div class="color-section">
+                    <div class="color-section-title">Theme Colors</div>
+                    <div class="swatch-grid swatch-grid-theme">
+                      <button type="button" class="swatch-button swatch-button-square is-active" data-color-command="hiliteColor" data-color-value="#fff1a8" data-picker-id="highlight-color-picker" aria-label="Soft yellow highlight" title="Soft yellow highlight" style="--swatch-color:#fff1a8;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#ffe3b3" data-picker-id="highlight-color-picker" aria-label="Soft apricot highlight" title="Soft apricot highlight" style="--swatch-color:#ffe3b3;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#ffd9d9" data-picker-id="highlight-color-picker" aria-label="Soft pink highlight" title="Soft pink highlight" style="--swatch-color:#ffd9d9;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#f8d3ff" data-picker-id="highlight-color-picker" aria-label="Lavender highlight" title="Lavender highlight" style="--swatch-color:#f8d3ff;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#dfeaff" data-picker-id="highlight-color-picker" aria-label="Soft blue highlight" title="Soft blue highlight" style="--swatch-color:#dfeaff;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#d6f4ff" data-picker-id="highlight-color-picker" aria-label="Soft cyan highlight" title="Soft cyan highlight" style="--swatch-color:#d6f4ff;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#dff5e5" data-picker-id="highlight-color-picker" aria-label="Soft green highlight" title="Soft green highlight" style="--swatch-color:#dff5e5;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#eaf8d1" data-picker-id="highlight-color-picker" aria-label="Soft lime highlight" title="Soft lime highlight" style="--swatch-color:#eaf8d1;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#f3ecd2" data-picker-id="highlight-color-picker" aria-label="Sand highlight" title="Sand highlight" style="--swatch-color:#f3ecd2;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#e4e4e4" data-picker-id="highlight-color-picker" aria-label="Light gray highlight" title="Light gray highlight" style="--swatch-color:#e4e4e4;"></button>
+                    </div>
+                  </div>
+                  <div class="color-section">
+                    <div class="color-section-title">Standard Colors</div>
+                    <div class="swatch-grid swatch-grid-standard">
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#ff0000" data-picker-id="highlight-color-picker" aria-label="Red highlight" title="Red highlight" style="--swatch-color:#ff0000;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#ff7c80" data-picker-id="highlight-color-picker" aria-label="Coral highlight" title="Coral highlight" style="--swatch-color:#ff7c80;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#ffc000" data-picker-id="highlight-color-picker" aria-label="Orange highlight" title="Orange highlight" style="--swatch-color:#ffc000;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#ffff00" data-picker-id="highlight-color-picker" aria-label="Yellow highlight" title="Yellow highlight" style="--swatch-color:#ffff00;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#92d050" data-picker-id="highlight-color-picker" aria-label="Green highlight" title="Green highlight" style="--swatch-color:#92d050;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#00b050" data-picker-id="highlight-color-picker" aria-label="Bright green highlight" title="Bright green highlight" style="--swatch-color:#00b050;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#00b0f0" data-picker-id="highlight-color-picker" aria-label="Cyan highlight" title="Cyan highlight" style="--swatch-color:#00b0f0;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#5b9bd5" data-picker-id="highlight-color-picker" aria-label="Blue highlight" title="Blue highlight" style="--swatch-color:#5b9bd5;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#7030a0" data-picker-id="highlight-color-picker" aria-label="Purple highlight" title="Purple highlight" style="--swatch-color:#7030a0;"></button>
+                      <button type="button" class="swatch-button swatch-button-square" data-color-command="hiliteColor" data-color-value="#c000c0" data-picker-id="highlight-color-picker" aria-label="Magenta highlight" title="Magenta highlight" style="--swatch-color:#c000c0;"></button>
+                    </div>
+                  </div>
                 </div>
               </details>
             </div>
@@ -117,38 +180,40 @@
             <div id="section-switcher" class="section-switcher" role="group" aria-label="Letter section editor"></div>
           </div>
 
-          <div id="editor-surface" class="editor-surface" contenteditable="true" spellcheck="true" aria-label="Letter content editor"></div>
+          <div class="editor-canvas">
+            <div id="editor-surface" class="editor-surface" contenteditable="true" spellcheck="true" aria-label="Letter content editor"></div>
+          </div>
         </div>
       </section>
-
-      <aside class="output-column">
-        <section class="panel">
-          <div class="panel-heading">
-            <h2>Generated XSL</h2>
-            <p>Live assembled output using the selected letter wrapper files.</p>
-            <div class="panel-actions">
-              <button type="button" class="action-button" id="copy-xsl-button" aria-label="Copy generated XSL">
-                <span class="copy-icon" aria-hidden="true"></span>
-                <span>Copy</span>
-              </button>
-              <button type="button" class="action-button" id="download-xsl-button" aria-label="Download generated XSL">
-                <span class="download-icon" aria-hidden="true"></span>
-                <span>Download</span>
-              </button>
-            </div>
-          </div>
-          <pre id="xsl-output" class="code-block"></pre>
-        </section>
-      </aside>
     </section>
 
-    <section class="panel preview-panel">
-      <div class="panel-heading">
-        <h2>Preview</h2>
-        <p>Rendered from the current editor content and the selected sample XML on a portrait 8.5 x 11 page preview.</p>
-        <div id="sample-switcher" class="sample-switcher" role="group" aria-label="Preview XML sample"></div>
-      </div>
-      <div id="preview-surface" class="preview-surface"></div>
+    <section class="workspace workspace-lower">
+      <section class="panel xsl-panel">
+        <div class="panel-heading">
+          <h2>Generated XSL</h2>
+          <p>Live assembled output using the selected letter wrapper files.</p>
+          <div class="panel-actions">
+            <button type="button" class="action-button" id="copy-xsl-button" aria-label="Copy generated XSL">
+              <span class="copy-icon" aria-hidden="true"></span>
+              <span>Copy</span>
+            </button>
+            <button type="button" class="action-button" id="download-xsl-button" aria-label="Download generated XSL">
+              <span class="download-icon" aria-hidden="true"></span>
+              <span>Download</span>
+            </button>
+          </div>
+        </div>
+        <pre id="xsl-output" class="code-block"></pre>
+      </section>
+
+      <section class="panel preview-panel">
+        <div class="panel-heading">
+          <h2>Preview</h2>
+          <p>Rendered from the current editor content and the selected sample XML on a portrait 8.5 x 11 page preview.</p>
+          <div id="sample-switcher" class="sample-switcher" role="group" aria-label="Preview XML sample"></div>
+        </div>
+        <div id="preview-surface" class="preview-surface"></div>
+      </section>
     </section>
   </main>
 
